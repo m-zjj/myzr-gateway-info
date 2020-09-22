@@ -1,0 +1,16 @@
+#!/bin/sh
+echo 85 > /sys/class/gpio/export
+echo "out" > /sys/class/gpio/gpio85/direction
+echo 1 > /sys/class/gpio/gpio85/value
+
+echo 48 > /sys/class/gpio/export
+echo "out" > /sys/class/gpio/gpio48/direction
+echo 0 > /sys/class/gpio/gpio48/value
+
+echo 47 > /sys/class/gpio/export
+echo "out" > /sys/class/gpio/gpio47/direction
+
+sleep 2
+
+echo 0 > /sys/class/gpio/gpio85/value
+echo 1 > /sys/class/gpio/gpio48/value

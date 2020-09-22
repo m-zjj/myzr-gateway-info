@@ -1,0 +1,28 @@
+#!/bin/sh
+do
+ifconfig -a|grep usb0 > /dev/null
+  if [ $? -eq 0 ];then
+    ifconfig|grep usb0 > /dev/null
+      if [ $? -eq 0 ];then 
+        ping -c 2 -I usb0 www.baidu.com > /dev/null
+          if [ $? -eq 0 ]; then
+            sleep 60
+          else
+            killall udhcpc
+            echo "Gateway-4G is connecting"
+            ifconfig usb0 down
+            wait
+            udhcpc -i usb0
+            wait
+            echo "udhcpc re up"
+          fi;
+      else
+        echo "Gateway-4G is connecting"
+        killall udhcpc
+        udhcpc -i usb0
+        echo "udhcpc up the usb0"
+      fi;
+  else
+    sleep 5
+  fi;
+done

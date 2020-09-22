@@ -1,0 +1,8 @@
+#!/bin/sh
+while true
+do
+    usleep 100000
+    echo 0 > /sys/class/gpio/gpio47/value
+    usleep 100000
+    echo 1 > /sys/class/gpio/gpio47/value
+done

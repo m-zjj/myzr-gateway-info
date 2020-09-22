@@ -1,0 +1,25 @@
+mount -t ubifs ubi0:miservice /config
+mount -t ubifs ubi0:customer /customer
+mount -t ubifs ubi0:appconfigs /appconfigs
+
+#  mkdir -p /dev/pts
+#  mount -t devpts devpts /dev/pts
+#  busybox telnetd&
+  if [ -e /etc/core.sh ]; then
+    echo "|/etc/core.sh %p" > /proc/sys/kernel/core_pattern
+    chmod 777 /etc/core.sh
+  fi;
+  if [ -e /customer/demo.sh ]; then
+        /customer/demo.sh
+  fi;
+/etc/sysled &
+
+if [ -e /etc/dropbear/dropbear_rsa_host_key ];then
+  dropbear
+else
+  cd /etc/dropbear/
+  dropbearkey -t rsa -f dropbear_rsa_host_key
+  dropbear
+fi;
+/etc/netcheck &  
+  
