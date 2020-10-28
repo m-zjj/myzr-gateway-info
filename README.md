@@ -1,3 +1,3 @@
 # myzr-gateway-info
-关于my-gateway的系统信息
+基于gw200的网关设备
 
